@@ -1,8 +1,8 @@
 import React from 'react';
 import Friend from './Friend';
-import friends from "../..friends";
+import friends from "./friends";
 
-class FriendsList extends React.component {
+class FriendsList extends React.Component {
     constructor( props ) {
         super( props );
 
@@ -18,16 +18,19 @@ class FriendsList extends React.component {
     }
 
     render () {
-        const friendsList = friends.map( friend => (
-            <Friend
-                currentLocation={ friend.current_location || {} }
-                friendCount={ friend.friend_count }
-                key={ friend.$$hashKey }
-                name={ friend.name }
-                pictureUrl={ friend.pic_square }
-                status={ friend.status ? friend.status.message : "" }
-            />
-        ) );
+        const friendsList = friends
+    .filter( friend => friend.name.toLowerCase().indexOf( this.state.searchText.toLowerCase() ) !== -1 )
+    .sort( ( a, b ) => a[ this.state.orderBy ] > b[ this.state.orderBy ] )
+    .map( friend => (
+        <Friend
+            currentLocation={ friend.current_location || {} }
+            friendCount={ friend.friend_count }
+            key={ friend.$$hashKey }
+            name={ friend.name }
+            pictureUrl={ friend.pic_square }
+            status={ friend.status ? friend.status.message : "" }
+        />
+    ) );
         return (
             <div>
                 <form

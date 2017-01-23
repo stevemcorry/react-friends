@@ -1,10 +1,9 @@
-import React from "React";
-
-class Friend extends React.component {
+import React from "react";
+class Friend extends React.Component {
     render () {
         return(
             <li className='friend'>
-                <img className="profile-pic" src='http://placebear.com/50/50.jpg' />
+                <img className="profile-pic" src='http://placebear.com/50/50.jpg' alt=""/>
                 <h3>Cali Fornia</h3>
                 <div className="location">
                     Location: New Port Beach, California, United States
